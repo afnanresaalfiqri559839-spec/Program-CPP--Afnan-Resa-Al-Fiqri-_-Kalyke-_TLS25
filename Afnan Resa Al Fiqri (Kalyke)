@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+string getLampColor(int time) {
+    int startOffset = 2;
+    int cycle = 103;
+    int t=(time-startOffset)%cycle;
+
+    const string colors[]={"Hijau", "Kuning", "Merah"};
+    const int durations[]={20, 3, 80};
+
+    int sum=0;
+    for (int i=0; i<3; i++) {
+        sum+=durations[i];
+        if (t<sum) return colors[i];
+    }
+    return "Tidak diketahui";
+}
+
+int main() {
+    vector<int> times={80, 135, 150, 212};
+
+    cout<<"=== Status Lampu APILL ===\n";
+    for (int t:times) {
+        cout<<"Detik ke-"<<t<<":"<<getLampColor(t)<<endl;
+    }
+
+    return 0;
+}
